@@ -23,7 +23,11 @@ A microservices-based financial system for managing accounts, cards, and transac
   - RESTful API for fraud checks
  
 ## API Documentation
+[http://localhost:8080/cms/swagger-ui/index.html](http://localhost:8080/cms/swagger-ui/index.html)
 ![CleanShot 2025-06-30 at 05 00 17@2x](https://github.com/user-attachments/assets/f627a61c-5369-4ae6-bdba-74b0e4c27e2a)
+[http://localhost:8080/fds/swagger-ui/index.html](http://localhost:8081/fds/swagger-ui/index.html)
+![CleanShot 2025-06-30 at 05 11 21@2x](https://github.com/user-attachments/assets/e184afd6-7945-4ea3-98f7-4fb216656048)
+
 
 
 ## Points Could Be Improved
