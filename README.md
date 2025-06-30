@@ -21,6 +21,10 @@ A microservices-based financial system for managing accounts, cards, and transac
   - Transaction amount-based risk scoring
   - Configurable fraud detection rules
   - RESTful API for fraud checks
+ 
+## API Documentation
+![CleanShot 2025-06-30 at 05 00 17@2x](https://github.com/user-attachments/assets/f627a61c-5369-4ae6-bdba-74b0e4c27e2a)
+
 
 ## Points Could Be Improved
 
@@ -60,9 +64,6 @@ A microservices-based financial system for managing accounts, cards, and transac
 ```bash
     docker-compose up -d
 ```
-
-## API Documentation
-You check the swagger through 
 
 
 ## Best Practices Implemented
