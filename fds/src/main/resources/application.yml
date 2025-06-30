@@ -29,11 +29,6 @@ fraud:
     frequency-limit: 8
     time-interval-hours: 1
 
-# Springdoc OpenAPI configuration
-springdoc:
-  swagger-ui:
-    path: /fds/swagger-ui.html
-
 # Logging
 logging:
   level:
