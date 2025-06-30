@@ -3,7 +3,7 @@ package com.fintech.cms.service;
 import com.fintech.cms.dto.card.*;
 import com.fintech.cms.dto.common.SuccessResponse;
 import com.fintech.cms.entity.Card;
-import org.springframework.data.domain.Page;
+import com.fintech.cms.dto.PaginatedResponse;
 import org.springframework.data.domain.Pageable;
 
 public interface ICardService {
@@ -16,7 +16,7 @@ public interface ICardService {
     
     CardDetailsResponse getCardById(String cardId);
     
-    Page<CardListResponse> getAllCards(Pageable pageable);
+    PaginatedResponse<CardListResponse> getAllCards(Pageable pageable);
     
     boolean isCardEligible(Card card);
     

@@ -4,7 +4,7 @@ import com.fintech.cms.dto.account.*;
 import com.fintech.cms.dto.common.SuccessResponse;
 import com.fintech.cms.entity.Account;
 import com.fintech.cms.enums.TransactionTypeEnum;
-import org.springframework.data.domain.Page;
+import com.fintech.cms.dto.PaginatedResponse;
 import org.springframework.data.domain.Pageable;
 import java.math.BigDecimal;
 
@@ -14,7 +14,7 @@ public interface IAccountService {
     
     AccountDetailsResponse getAccountById(String accountId);
     
-    Page<AccountListResponse> getAllAccounts(Pageable pageable);
+    PaginatedResponse<AccountListResponse> getAllAccounts(Pageable pageable);
     
     SuccessResponse updateAccount(UpdateAccountRequest accountRequest);
     

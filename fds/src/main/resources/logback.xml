@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_PATH" value="/tmp/fds/logs"/>
+    <property name="LOG_FILE_NAME" value="fds.log"/>
+    <property name="LOG_PATTERN" value="${%d{yyyy-MM-dd HH:mm:ss} %-5level %X{transactionId} %logger{40}.%M\(%line\): %msg%n}"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%X{transactionId}] %logger{40}.%M\(%line\): %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${LOG_FILE_NAME}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%X{transactionId}] %logger{40}.%M\(%line\): %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.fraud" additivity="false" level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <logger name="org.springframework" additivity="false" level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+</configuration>

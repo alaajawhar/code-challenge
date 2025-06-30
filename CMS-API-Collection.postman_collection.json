@@ -1,0 +1,341 @@
+{
+  "info": {
+    "name": "CMS & FDS API Collection",
+    "description": "Complete API collection for Card Management System (CMS) and Fraud Detection System (FDS)",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "cms_base_url",
+      "value": "http://localhost:8080/cms",
+      "type": "string"
+    },
+    {
+      "key": "fds_base_url",
+      "value": "http://localhost:8081/fds",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "CMS - Account Management",
+      "item": [
+        {
+          "name": "Create Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"balance\": 1000.00\n}"
+            },
+            "url": {
+              "raw": "{{cms_base_url}}/api/accounts",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "accounts"]
+            }
+          }
+        },
+        {
+          "name": "Get Account by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/accounts/:accountId",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "accounts", ":accountId"],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "123e4567-e89b-12d3-a456-426614174000"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/accounts?page=0&size=10",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "accounts"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Account",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"John Smith\",\n  \"status\": \"ACTIVE\",\n  \"balance\": 1500.00\n}"
+            },
+            "url": {
+              "raw": "{{cms_base_url}}/api/accounts",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "accounts"]
+            }
+          }
+        },
+        {
+          "name": "Delete Account",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/accounts/:accountId",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "accounts", ":accountId"],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "123e4567-e89b-12d3-a456-426614174000"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Card Management",
+      "item": [
+        {
+          "name": "Create Card",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiry\": \"2025-12-31\",\n  \"cardNumber\": \"1234567890123456\",\n  \"accountId\": \"123e4567-e89b-12d3-a456-426614174000\"\n}"
+            },
+            "url": {
+              "raw": "{{cms_base_url}}/api/cards",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "cards"]
+            }
+          }
+        },
+        {
+          "name": "Activate Card",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/cards/:cardId/activate",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "cards", ":cardId", "activate"],
+              "variable": [
+                {
+                  "key": "cardId",
+                  "value": "987fcdeb-51a2-43d1-9c45-987654321000"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Deactivate Card",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/cards/:cardId/deactivate",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "cards", ":cardId", "deactivate"],
+              "variable": [
+                {
+                  "key": "cardId",
+                  "value": "987fcdeb-51a2-43d1-9c45-987654321000"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Card by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/cards/:cardId",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "cards", ":cardId"],
+              "variable": [
+                {
+                  "key": "cardId",
+                  "value": "987fcdeb-51a2-43d1-9c45-987654321000"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Cards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/cards?page=0&size=10",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "cards"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Transaction Management",
+      "item": [
+        {
+          "name": "Create Transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionAmount\": 500.00,\n  \"transactionType\": \"D\",\n  \"accountId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"cardId\": \"987fcdeb-51a2-43d1-9c45-987654321000\"\n}"
+            },
+            "url": {
+              "raw": "{{cms_base_url}}/api/transactions",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "transactions"]
+            }
+          }
+        },
+        {
+          "name": "Get Transaction by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/transactions/:transactionId",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "transactions", ":transactionId"],
+              "variable": [
+                {
+                  "key": "transactionId",
+                  "value": "abc12345-6789-0def-1a2b-3c4d5e6f7890"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{cms_base_url}}/api/transactions?page=0&size=10",
+              "host": ["{{cms_base_url}}"],
+              "path": ["api", "transactions"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "FDS - Fraud Detection",
+      "item": [
+        {
+          "name": "Check Transaction for Fraud",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardNumber\": \"1234567890123456\",\n  \"amount\": 5000.00\n}"
+            },
+            "url": {
+              "raw": "{{fds_base_url}}/api/fraud/check",
+              "host": ["{{fds_base_url}}"],
+              "path": ["api", "fraud", "check"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

@@ -14,7 +14,8 @@ public class CardDetailsResponse {
     private String id;
     private CardStatusEnum status;
     private Date expiry;
-    private String maskedCardNumber;
+    private String cardNumber;
+    private String encryptedCardNumber;
     private String accountId;
     
 }

@@ -43,7 +43,7 @@ public class AccountMapper {
         return dto;
     }
     
-    public AccountListResponse toListResponse(Account entity) {
+    public AccountListResponse toResponseItem(Account entity) {
         AccountListResponse dto = new AccountListResponse();
         dto.setId(entity.getId());
         dto.setName(entity.getName());

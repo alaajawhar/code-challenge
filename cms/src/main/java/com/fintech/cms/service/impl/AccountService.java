@@ -10,6 +10,7 @@ import com.fintech.cms.mapper.AccountMapper;
 import com.fintech.cms.repository.AccountRepository;
 import com.fintech.cms.service.IAccountService;
 import lombok.RequiredArgsConstructor;
+import com.fintech.cms.dto.PaginatedResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,9 +36,9 @@ public class AccountService implements IAccountService {
         return accountMapper.toDetailsResponse(account);
     }
 
-    public Page<AccountListResponse> getAllAccounts(Pageable pageable) {
+    public PaginatedResponse<AccountListResponse> getAllAccounts(Pageable pageable) {
         Page<Account> accounts = accountRepository.findAll(pageable);
-        return accounts.map(accountMapper::toListResponse);
+        return new PaginatedResponse<>(accounts.map(accountMapper::toResponseItem).getContent(), accounts.getTotalElements());
     }
 
     public SuccessResponse updateAccount(UpdateAccountRequest accountRequest) {

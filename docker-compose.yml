@@ -1,0 +1,55 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: .docker/postgres/Dockerfile
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  cms-app:
+    build:
+      context: .
+      dockerfile: .docker/cms/Dockerfile
+    container_name: cms-app
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres?currentSchema=card_management
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  fraud-app:
+    build:
+      context: .
+      dockerfile: .docker/fds/Dockerfile
+    container_name: fraud-app
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres?currentSchema=fraud_detection
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge 

@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
+import com.fintech.cms.dto.PaginatedResponse;
 import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
 
@@ -32,8 +32,8 @@ public class TransactionController implements ITransactionController {
     }
     
     @GetMapping
-    public ResponseEntity<Page<TransactionListResponse>> getAllTransactions(Pageable pageable) {
-        Page<TransactionListResponse> response = transactionService.getAllTransactions(pageable);
+    public ResponseEntity<PaginatedResponse<TransactionListResponse>> getAllTransactions(Pageable pageable) {
+        PaginatedResponse<TransactionListResponse> response = transactionService.getAllTransactions(pageable);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

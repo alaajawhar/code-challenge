@@ -1,0 +1,28 @@
+package com.fraud.rules;
+
+import com.fraud.dto.FraudCheckRequest;
+import com.fraud.dto.FraudCheckResponse;
+
+global FraudCheckResponse fraudResponse;
+
+// Rule 1: Check for high amount transactions (> $10,000)
+rule "High Amount Transaction Rule"
+    when
+        $transaction: FraudCheckRequest(amount > 10000.00)
+    then
+        fraudResponse.setFraud(true);
+        fraudResponse.setReason("Transaction amount exceeds the fraud limit of $10,000");
+        System.out.println("High amount transaction detected: $" + $transaction.getAmount());
+    end
+
+// Rule 2: Default rule for valid transactions (when amount is within limit)
+rule "Valid Transaction Rule"
+    salience -100
+    when
+        $transaction: FraudCheckRequest()
+        eval(!fraudResponse.isFraud())
+    then
+        fraudResponse.setFraud(false);
+        fraudResponse.setReason("Transaction amount is within acceptable limits");
+        System.out.println("Transaction amount validated successfully");
+    end 

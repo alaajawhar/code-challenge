@@ -45,4 +45,7 @@ public class Transaction {
     @JoinColumn(name = "card_id", nullable = false)
     private Card card;
     
+    @Column(name = "response")
+    private String response;
+    
 }

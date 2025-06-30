@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
+import com.fintech.cms.dto.PaginatedResponse;
 import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
 
@@ -32,8 +32,8 @@ public class AccountController implements IAccountController {
     }
     
     @GetMapping
-    public ResponseEntity<Page<AccountListResponse>> getAllAccounts(Pageable pageable) {
-        Page<AccountListResponse> response = accountService.getAllAccounts(pageable);
+    public ResponseEntity<PaginatedResponse<AccountListResponse>> getAllAccounts(Pageable pageable) {
+        PaginatedResponse<AccountListResponse> response = accountService.getAllAccounts(pageable);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     

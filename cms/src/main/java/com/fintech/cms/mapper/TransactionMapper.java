@@ -9,12 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class TransactionMapper {
     
-    public Transaction toEntity(CreateTransactionRequest dto, Account account, Card card) {
+    public Transaction toEntity(CreateTransactionRequest dto, Account account, Card card, String response) {
         Transaction transaction = new Transaction();
         transaction.setTransactionAmount(dto.getTransactionAmount());
         transaction.setTransactionType(dto.getTransactionType());
         transaction.setAccount(account);
         transaction.setCard(card);
+        transaction.setResponse(response);
         return transaction;
     }
     
@@ -35,6 +36,7 @@ public class TransactionMapper {
         dto.setTransactionType(entity.getTransactionType());
         dto.setAccountId(entity.getAccount().getId());
         dto.setCardId(entity.getCard().getId());
+        dto.setResponse(entity.getResponse());
         return dto;
     }
     
@@ -47,7 +49,7 @@ public class TransactionMapper {
         return dto;
     }
     
-    public TransactionListResponse toListResponse(Transaction entity) {
+    public TransactionListResponse toResponseItem(Transaction entity) {
         TransactionListResponse dto = new TransactionListResponse();
         dto.setId(entity.getId());
         dto.setTransactionAmount(entity.getTransactionAmount());
@@ -55,6 +57,7 @@ public class TransactionMapper {
         dto.setTransactionType(entity.getTransactionType());
         dto.setAccountId(entity.getAccount().getId());
         dto.setCardId(entity.getCard().getId());
+        dto.setResponse(entity.getResponse());
         return dto;
     }
 }

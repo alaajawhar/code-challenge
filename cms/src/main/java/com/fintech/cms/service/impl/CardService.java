@@ -11,11 +11,12 @@ import com.fintech.cms.repository.AccountRepository;
 import com.fintech.cms.repository.CardRepository;
 import com.fintech.cms.service.ICardService;
 import lombok.RequiredArgsConstructor;
+import com.fintech.cms.dto.PaginatedResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -60,14 +61,14 @@ public class CardService implements ICardService {
         return cardMapper.toDetailsResponse(card);
     }
 
-    public Page<CardListResponse> getAllCards(Pageable pageable) {
+    public PaginatedResponse<CardListResponse> getAllCards(Pageable pageable) {
         Page<Card> cards = cardRepository.findAll(pageable);
-        return cards.map(cardMapper::toListResponse);
+        return new PaginatedResponse<>(cards.map(cardMapper::toResponseItem).getContent(), cards.getTotalElements());
     }
 
     public boolean isCardEligible(Card card) {
         return card.getStatus() == CardStatusEnum.ACTIVE &&
-                card.getExpiry().toInstant().isAfter(Instant.now());
+                card.getExpiry().after(new Date());
     }
 
     public Card getCardEntityById(String cardId) {

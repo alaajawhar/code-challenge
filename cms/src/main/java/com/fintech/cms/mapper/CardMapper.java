@@ -37,7 +37,8 @@ public class CardMapper {
         dto.setId(entity.getId());
         dto.setStatus(entity.getStatus());
         dto.setExpiry(entity.getExpiry());
-        dto.setMaskedCardNumber(maskCardNumber(entity.getCardNumber()));
+        dto.setCardNumber(encryptionService.decrypt(entity.getCardNumber()));
+        dto.setEncryptedCardNumber(entity.getCardNumber());
         dto.setAccountId(entity.getAccount().getId());
         return dto;
     }
@@ -58,7 +59,7 @@ public class CardMapper {
         return dto;
     }
     
-    public CardListResponse toListResponse(Card entity) {
+    public CardListResponse toResponseItem(Card entity) {
         CardListResponse dto = new CardListResponse();
         dto.setId(entity.getId());
         dto.setStatus(entity.getStatus());

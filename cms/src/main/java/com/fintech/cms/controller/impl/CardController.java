@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
+import com.fintech.cms.dto.PaginatedResponse;
 import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
 
@@ -44,8 +44,8 @@ public class CardController implements ICardController {
     }
     
     @GetMapping
-    public ResponseEntity<Page<CardListResponse>> getAllCards(Pageable pageable) {
-        Page<CardListResponse> response = cardService.getAllCards(pageable);
+    public ResponseEntity<PaginatedResponse<CardListResponse>> getAllCards(Pageable pageable) {
+        PaginatedResponse<CardListResponse> response = cardService.getAllCards(pageable);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

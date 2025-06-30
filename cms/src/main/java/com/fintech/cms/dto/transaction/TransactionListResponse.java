@@ -18,5 +18,6 @@ public class TransactionListResponse {
     private TransactionTypeEnum transactionType;
     private String accountId;
     private String cardId;
-    
+    private String response;
+
 }

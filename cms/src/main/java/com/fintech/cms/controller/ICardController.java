@@ -2,7 +2,7 @@ package com.fintech.cms.controller;
 
 import com.fintech.cms.dto.card.*;
 import com.fintech.cms.dto.common.SuccessResponse;
-import org.springframework.data.domain.Page;
+import com.fintech.cms.dto.PaginatedResponse;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
@@ -16,5 +16,5 @@ public interface ICardController {
     
     ResponseEntity<CardDetailsResponse> getCardById(String cardId);
     
-    ResponseEntity<Page<CardListResponse>> getAllCards(Pageable pageable);
+    ResponseEntity<PaginatedResponse<CardListResponse>> getAllCards(Pageable pageable);
 }
